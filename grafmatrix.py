@@ -18,8 +18,19 @@ class GrafMatrix:
             return True;
         return False;
 
-    def get_neighbours(nodeName, grafMatrix):
-        return 'fuckoff'
+    def get_id(self, nodeName):
+        return self.nodes.index(nodeName)+1
+
+    def get_name_by_id(self, i):
+        return self.nodes[i-1]
+
+    def get_neighbours(self, nodeName):
+        node_id =self.get_id(nodeName)
+        neighbours = self.get_neighbours_by_id(node_id)
+        n_names=[]
+        for i in neighbours:
+            n_names.append(self.get_name_by_id(i))
+        return n_names
 
     def get_neighbours_by_id(self, i):
         row = self.edges[i-1];
@@ -32,6 +43,11 @@ class GrafMatrix:
             if self.edges[r][i-1] !=0:
                 neighbours.append(r+1)
         return neighbours
+
+    def is_node_exist(self,name):
+        if name in self.nodes:
+            return True;
+        return False;
 
     def calc_edges(self):
         return 'fuckoff'

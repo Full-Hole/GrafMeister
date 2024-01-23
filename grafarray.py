@@ -40,6 +40,7 @@ class GrafArray:
         nameList =[]
         for i in idList:
             nameList.append(self.graf[i-1][1])
+        return nameList
 
     def get_neighbours(self, nodeName):
         for node in self.graf:
@@ -97,7 +98,7 @@ class GrafArray:
             return True;
         return False;
 
-    def is_name_exist(self,name):
+    def is_node_exist(self,name):
         for node in self.graf:
             if node[1] == name:
                 return True;

@@ -75,16 +75,16 @@ def side_menu(g):
         
 
 def neighbours_menu(g):
-    node = input("Введите Id вершины: ");
+    node = input("Введите Id или Имя вершины: ");
     out = '';
     if is_int(node):
         if g.is_id_exist(int(node)):
             print("Соседи вершины ",node, ' - ', g.get_neighbours_by_id(int(node)));
+            return    
+    else:
+        if g.is_node_exist(node):
+            print("Соседи вершины ",node, ' - ',g.get_neighbours(node));
             return
-    #else:
-    #    if g.is_name_exist(node):
-    #        print("Соседи вершины ",node, ' - ',g.get_neighbours(node));
-    #        return
     print('Вершина не найдена');
 
 def chain_menu(g):
@@ -93,7 +93,7 @@ def chain_menu(g):
     t = input("Введите цепочку вершин через пробел: ")
     ids = t.split()
     for i in range(len(ids)):
-        if isinstance(ids[i], int):
+        if not is_int(ids[i]):
             print("Введены некоретные данные")
             return
     if g.has_chain_by_ids(list(map(int, ids))):
