@@ -22,7 +22,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="adjmat.py" />
+    <Compile Include="grafmatrix.py" />
     <Compile Include="grafarray.py" />
     <Compile Include="grafedges.py" />
     <Compile Include="GrafMeister.py" />

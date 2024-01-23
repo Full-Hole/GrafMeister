@@ -11,3 +11,6 @@ def get_graf_edges(nodes, edges):
             if edges[i][j] !=0:
                 graf.append([nodes[i], nodes[j],edges[i][j]])
     return graf
+
+def get_neighbours(nodeName, grafEdges):
+    print ('fuckoff')
