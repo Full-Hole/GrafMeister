@@ -49,7 +49,7 @@ class GrafArray:
 
     def get_neighbours_by_id(self, i):
         if i > 0 and i < len(self.graf):
-            return self.graf[i+1][4] + self.graf[i+1][5]
+            return self.graf[i-1][4] + self.graf[i-1][5]
         return []
 
     def get_id(self, nodeName):
@@ -92,8 +92,8 @@ class GrafArray:
             edge += row[2];
         return edge;
 
-    def is_id_exist(self,id):
-        if id > 0 and id < len(self.graf):
+    def is_id_exist(self,i):
+        if i > 0 and i < len(self.graf)+1:
             return True;
         return False;
 
