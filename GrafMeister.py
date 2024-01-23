@@ -1,7 +1,8 @@
-import networkx as nx
+﻿import networkx as nx
 import matplotlib.pyplot as plt
 import grafedges as ge
-import grafarray as ga
+from grafarray import GrafArray
+import grafmatrix as gm
 from prettytable import PrettyTable
 
 print("Hello")
@@ -18,13 +19,6 @@ E = [
 [0, 0, 0, 0, 2, 0, 0, 0, 0],
 ]
 
-
-
-
-
-
-
-
 def parse_graph(nodes, edges):
     G = nx.DiGraph()
     for v in nodes:
@@ -39,7 +33,7 @@ def show_graph(G, custom_node_positions=None):
     plt.figure() 
     
     if custom_node_positions==None:
-        pos = nx.circular_layout(G)
+        pos = nx.circular_layout()
     else:
         pos=custom_node_positions
         
@@ -47,11 +41,37 @@ def show_graph(G, custom_node_positions=None):
     nx.draw(G,pos,font_size =9, node_color = '#85ceff', node_size = 1000, with_labels = True,)
     nx.draw_networkx_edge_labels(G,pos,edge_labels=weight_labels)
     plt.show()
-    
-gred = ge.get_graf_edges(V,E)
-ge.print_edges(gred)
-grar = ga.get_graf_array(V,E)
-ga.show_graph_table(grar)
+
+def input_chain():
+    x=True
+    ids = [] 
+    while(x):
+        print("Введите цепочку вершин через пробел:")
+        t = input()
+        if isinstance(t, str):
+            ids = t.split()
+            for i in range(len(ids)):
+                if isinstance(ids[i], int):
+                    print("Введены некоретные данные")
+                    break
+            x=False
+            print("Введены слудцющие значения ", ids)
+            return list(map(int, ids))
+
+
+
+#gred = ge.get_graf_edges(V,E)
+#ge.print_edges(gred)
+
+
+
+grafArray = GrafArray(V,E)
+
+par = input_chain()
+
+grafArray.show_graph_table()
+
+#print(grafArray.has_chain_by_ids(par))
 #G = parse_graph(V,E)
 #show_graph(G)
 #i = input()
