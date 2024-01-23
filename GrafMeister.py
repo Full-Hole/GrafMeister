@@ -1,12 +1,13 @@
 ﻿import networkx as nx
 import matplotlib.pyplot as plt
-import grafedges as ge
+import menu as mm
 from grafarray import GrafArray
-import grafmatrix as gm
+from grafmatrix import GrafMatrix
+from grafedges import GrafEdges
 from prettytable import PrettyTable
 
 print("Hello")
-V = ('Pete', 'Stuart', 'George', 'John', 'Ringo', 'Paul', 'Tommy', 'Norman', 'Chas')
+V = ['Pete', 'Stuart', 'George', 'John', 'Ringo', 'Paul', 'Tommy', 'Norman', 'Chas']
 E = [
 [0, 6, 0, 0, 0, 0, 0, 0, 0],
 [0, 0, 3, 0, 0, 0, 0, 0, 0],
@@ -33,7 +34,7 @@ def show_graph(G, custom_node_positions=None):
     plt.figure() 
     
     if custom_node_positions==None:
-        pos = nx.circular_layout()
+        pos = nx.circular_layout(G)
     else:
         pos=custom_node_positions
         
@@ -42,38 +43,95 @@ def show_graph(G, custom_node_positions=None):
     nx.draw_networkx_edge_labels(G,pos,edge_labels=weight_labels)
     plt.show()
 
-def input_chain():
-    x=True
-    ids = [] 
-    while(x):
-        print("Введите цепочку вершин через пробел:")
-        t = input()
-        if isinstance(t, str):
-            ids = t.split()
-            for i in range(len(ids)):
-                if isinstance(ids[i], int):
-                    print("Введены некоретные данные")
-                    break
-            x=False
-            print("Введены слудцющие значения ", ids)
-            return list(map(int, ids))
+
+def main_menu():
+    while True:
+        mm.show_main_menu()
+        i = input("Ваш выбор: ")
+        match i:
+            case '1': g = GrafMatrix(V,E)
+            case '2': g = GrafEdges(V,E)
+            case '3': g = GrafArray(V,E)
+            case '0': raise SystemExit
+            case _ : 
+                print('Некорректный ввод')
+                continue
+        side_menu(g)
 
 
+
+def side_menu(g):
+    while True:
+        mm.show_side_menu()
+        i = input("Ваш выбор: ")
+        match i:
+            case '1': neighbours_menu(g);
+            case '2': chain_menu(g);
+            case '3': weight_menu(g);
+            case '4': print("В заданном графе ", g.calc_edges(), " ребер");
+            case '5': g.show()
+            case '0': break;
+            case _ : continue;
+        
+
+def neighbours_menu(g):
+    node = input("Введите Id или Имя вершины: ");
+    out = '';
+    if isinstance(node, int):
+        if g.is_id_exist(int(node)):
+            print("Соседи вершины ",node, ' - ', g.get_neighbours_by_id(node));
+            return
+    else:
+        if g.is_name_exist(node):
+            print("Соседи вершины ",node, ' - ',g.get_neighbours(node));
+            return
+    print('Вершина не найдена');
+
+def chain_menu(g):
+    ids = [];
+    ans =''
+    t = input("Введите цепочку вершин через пробел: ")
+    ids = t.split()
+    for i in range(len(ids)):
+        if isinstance(ids[i], int):
+            print("Введены некоретные данные")
+            return
+    if g.has_chain_by_ids(list(map(int, ids))):
+        ans='сущесвует'
+    else:
+        ans='отсутствует'
+
+    print("Цепочка ", ids, " - ", ans )
+
+def weight_menu(g):
+    w = input("Задайте величину: ")
+    if isinstance(w, int):
+        print("Список вершин ", g.find_nodes_by_weight(w))
+    else:
+        print("Введены некоретные данные")
+
+
+
+
+
+
+
+    
 
 #gred = ge.get_graf_edges(V,E)
 #ge.print_edges(gred)
+#Получение цепочки из ввода
+#chain = input_chain()
+main_menu()
 
 
 
-grafArray = GrafArray(V,E)
 
-par = input_chain()
+#grafArray.show_graph_table()
 
-grafArray.show_graph_table()
 
-#print(grafArray.has_chain_by_ids(par))
-#G = parse_graph(V,E)
-#show_graph(G)
+G = parse_graph(V,E)
+show_graph(G)
 #i = input()
 
 
