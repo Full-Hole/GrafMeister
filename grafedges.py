@@ -87,3 +87,22 @@ class GrafEdges:
             return self.has_chain(idList)
         except ValueError:
             return False
+
+    def get_node_weight(self, i):
+        weights=[]
+        for j in range(len(self.edges)):
+            if self.edges[j][0] == i:
+                weights.append(self.edges[j][2])
+                continue
+            if self.edges[j][1] == i:
+                weights.append(self.edges[j][2])
+                continue
+        return weights
+
+    def find_nodes_by_weight(self,weight):
+        nodesList =[]
+        for i in range(len(self.nodes)):
+            weights = sum(self.get_node_weight(i+1))
+            if weights > weight:
+                nodesList.append(i+1)
+        return nodesList

@@ -78,6 +78,23 @@ class GrafMatrix:
         except ValueError:
             return False
 
+    def get_parents_weight(self, i):        
+        return self.column(i)
+
+    def get_childs_weight(self, i):     
+        return self.edges[i]
+
+    def column(self, i):
+        return [row[i] for row in self.edges]
+
+    def find_nodes_by_weight(self,weight):
+        nodesList =[]
+        for i in range(len(self.nodes)):
+            weights = sum(self.get_childs_weight(i)+self.get_parents_weight(i))
+            if weights > weight:
+                nodesList.append(i+1)
+        return nodesList
+
     def calc_edges(self):
         return 'fuckoff'
 
