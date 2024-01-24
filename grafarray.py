@@ -57,6 +57,7 @@ class GrafArray:
         for i in range(len(self.graf)):
                 if(nodeName==self.graf[i][2]):
                     return i+1
+        return False
     
     def get_ids(self, nodeList):
         idList =[]
@@ -75,8 +76,11 @@ class GrafArray:
         return True  
 
     def has_chain_by_name(self, nodeList):
-        idList = self.get_ids(nodeList)
-        return self.has_chain(idList)
+        try:
+            idList = self.get_ids(nodeList)
+            return self.has_chain(idList)
+        except ValueError:
+            return False
 
 
     def find_nodes_by_weight(self,weight):

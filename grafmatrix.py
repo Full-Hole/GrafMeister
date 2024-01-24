@@ -72,8 +72,11 @@ class GrafMatrix:
         return True  
 
     def has_chain_by_name(self, nodeList):
-        idList = self.get_ids(nodeList)
-        return self.has_chain(idList)
+        try:
+            idList = self.get_ids(nodeList)
+            return self.has_chain(idList)
+        except ValueError:
+            return False
 
     def calc_edges(self):
         return 'fuckoff'
