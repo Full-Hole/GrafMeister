@@ -21,6 +21,12 @@ class GrafMatrix:
     def get_id(self, nodeName):
         return self.nodes.index(nodeName)+1
 
+    def get_ids(self, nodeList):
+        idList =[]
+        for j in range(len(nodeList)):
+            idList.append(self.get_id(nodeList[j]))        
+        return idList;
+
     def get_name_by_id(self, i):
         return self.nodes[i-1]
 
@@ -33,21 +39,42 @@ class GrafMatrix:
         return n_names
 
     def get_neighbours_by_id(self, i):
-        row = self.edges[i-1];
-        size = len(row)
-        neighbours =[]
-        for j in range(size):
-            if row[j] !=0:
-                neighbours.append(j+1)
-        for r in range(size):
-            if self.edges[r][i-1] !=0:
-                neighbours.append(r+1)
-        return neighbours
+        return self.get_childs(i)+ self.get_parents(i)
 
     def is_node_exist(self,name):
         if name in self.nodes:
             return True;
         return False;
 
+    def get_parents(self, i):
+        parent=[]
+        for j in range(len(self.edges)):
+            if self.edges[j][i-1] !=0:
+                parent.append(j+1)
+        return parent
+
+    def get_childs(self, i):
+        row = self.edges[i-1];
+        children=[]
+        for j in range(len(self.edges)):
+            if row[j] !=0:
+                children.append(j+1)
+        return children
+            
+    def has_chain(self, idList):
+        chainLength = len(idList)
+        childs = []
+        for i in range(chainLength):
+            if i+1 < chainLength:
+                childs = self.get_childs(idList[i])
+                if idList[i+1] not in childs:
+                    return False
+        return True  
+
+    def has_chain_by_name(self, nodeList):
+        idList = self.get_ids(nodeList)
+        return self.has_chain(idList)
+
     def calc_edges(self):
         return 'fuckoff'
+

@@ -23,6 +23,12 @@ class GrafEdges:
     def get_id(self, nodeName):
         return self.nodes.index(nodeName)+1
 
+    def get_ids(self, nodeList):
+        idList =[]
+        for j in range(len(nodeList)):
+            idList.append(self.get_id(nodeList[j]))        
+        return idList;
+
     def get_neighbours(self, nodeName):
         node_id =self.get_id(nodeName)
         neighbours = self.get_neighbours_by_id(node_id)
@@ -53,3 +59,28 @@ class GrafEdges:
         if i > 0 and i < len(self.nodes)+1:
             return True;
         return False;
+
+    def get_childs(self, i):
+        children=[]
+        for j in range(len(self.edges)):
+            if self.edges[j][0] == i:
+                children.append(self.edges[j][1])
+                continue
+            if self.edges[j][0] > i:
+                break
+
+        return children
+            
+    def has_chain(self, idList):
+        chainLength = len(idList)
+        childs = []
+        for i in range(chainLength):
+            if i+1 < chainLength:
+                childs = self.get_childs(idList[i])
+                if idList[i+1] not in childs:
+                    return False
+        return True  
+
+    def has_chain_by_name(self, nodeList):
+        idList = self.get_ids(nodeList)
+        return self.has_chain(idList)

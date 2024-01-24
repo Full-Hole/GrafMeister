@@ -75,6 +75,7 @@ def side_menu(g):
         
 
 def neighbours_menu(g):
+    print("")
     node = input("Введите Id или Имя вершины: ");
     out = '';
     if is_int(node):
@@ -88,6 +89,7 @@ def neighbours_menu(g):
     print('Вершина не найдена');
 
 def chain_menu(g):
+    print("")
     ids = [];
     ans =''
     t = input("Введите цепочку вершин через пробел: ")
@@ -96,7 +98,7 @@ def chain_menu(g):
         if not is_int(ids[i]):
             print("Введены некоретные данные")
             return
-    if g.has_chain_by_ids(list(map(int, ids))):
+    if g.has_chain(list(map(int, ids))):
         ans='сущесвует'
     else:
         ans='отсутствует'
@@ -104,6 +106,7 @@ def chain_menu(g):
     print("Цепочка ", ids, " - ", ans )
 
 def weight_menu(g):
+    print("")
     w = input("Задайте величину: ")
     if is_int(w):
         print("Список вершин ", g.find_nodes_by_weight(int(w)))
