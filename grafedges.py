@@ -5,6 +5,7 @@ class GrafEdges:
     def __init__(self, nodesList, edgesList):
         self.edges = self.get_graf_edges(edgesList)
         self.nodes = nodesList
+        self.graf = (self.nodes,self.edges)
 
     def show(self):
         t = PrettyTable(['From','To', 'Weight'])

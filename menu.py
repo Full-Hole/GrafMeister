@@ -8,6 +8,7 @@ def show_main_menu():
     t.add_row(['2','Список ребер'])
     t.add_row(['3','Массив записей'])
     t.add_row(['4','Показать граф'],divider=True)
+    t.add_row(['5','Debug Info'],divider=True)
     t.add_row(['0','Выход'])
     print(t)
 

@@ -1,6 +1,7 @@
 ﻿import networkx as nx
 import matplotlib.pyplot as plt
 import menu as mm
+from getsize import get_size
 from grafarray import GrafArray
 from grafmatrix import GrafMatrix
 from grafedges import GrafEdges
@@ -60,6 +61,9 @@ def main_menu():
                 g = parse_graph(V,E)
                 show_graph(g)
                 continue
+            case '5': 
+                debug_menu()
+                continue
             case '0': raise SystemExit
             case _ : 
                 print('Некорректный ввод')
@@ -117,6 +121,20 @@ def weight_menu(g):
         print("Список вершин ", g.find_nodes_by_weight(int(w)))
     else:
         print("Введены некоретные данные")
+
+def debug_menu():
+    print("")
+    g1 = GrafMatrix(V,E)
+    g2 = GrafEdges(V,E)
+    g3 = GrafArray(V,E)
+
+    print("Размер объекта Матрица смежности: ", get_size(g1.graf))
+    print("Размер объекта Список ребер:", get_size(g2.graf))
+    print("Размер объекта Массив записей:", get_size(g3.graf))
+
+    input("Введите символ для возвращения в предыдущее меню")
+
+
 
  
 main_menu()
