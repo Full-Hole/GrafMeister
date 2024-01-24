@@ -6,7 +6,8 @@ def show_main_menu():
     t.align['Выбор'] = "l"
     t.add_row(['1','Матрица смежности'])
     t.add_row(['2','Список ребер'])
-    t.add_row(['3','Массив записей'],divider=True)
+    t.add_row(['3','Массив записей'])
+    t.add_row(['4','Показать граф'],divider=True)
     t.add_row(['0','Выход'])
     print(t)
 

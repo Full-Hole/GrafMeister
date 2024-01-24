@@ -27,7 +27,7 @@ class GrafEdges:
         idList =[]
         for j in range(len(nodeList)):
             idList.append(self.get_id(nodeList[j]))        
-        return idList;
+        return idList
 
     def get_neighbours(self, nodeName):
         node_id =self.get_id(nodeName)
@@ -52,13 +52,13 @@ class GrafEdges:
 
     def is_node_exist(self,name):
         if name in self.nodes:
-            return True;
-        return False;
+            return True
+        return False
 
     def is_id_exist(self, i):
         if i > 0 and i < len(self.nodes)+1:
-            return True;
-        return False;
+            return True
+        return False
 
     def get_childs(self, i):
         children=[]

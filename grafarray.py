@@ -63,7 +63,7 @@ class GrafArray:
         idList =[]
         for j in range(len(nodeList)):
             idList.append(self.get_id(nodeList[j]))        
-        return idList;
+        return idList
 
     def has_chain(self, idList):
         chainLength = len(idList)
@@ -92,20 +92,20 @@ class GrafArray:
         return nodes
 
     def calc_edges(self):
-        edge = 0;
+        edge = 0
         for row in self.graf:
-            edge += row[2];
-        return edge;
+            edge += row[2]
+        return edge
 
     def is_id_exist(self,i):
         if i > 0 and i < len(self.graf)+1:
-            return True;
-        return False;
+            return True
+        return False
 
     def is_node_exist(self,name):
         for node in self.graf:
             if node[1] == name:
-                return True;
-        return False;
+                return True
+        return False
 
     

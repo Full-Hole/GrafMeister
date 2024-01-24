@@ -15,8 +15,8 @@ class GrafMatrix:
 
     def is_id_exist(self, i):
         if i > 0 and i < len(self.graf[0])+1:
-            return True;
-        return False;
+            return True
+        return False
 
     def get_id(self, nodeName):
         return self.nodes.index(nodeName)+1
@@ -25,7 +25,7 @@ class GrafMatrix:
         idList =[]
         for j in range(len(nodeList)):
             idList.append(self.get_id(nodeList[j]))        
-        return idList;
+        return idList
 
     def get_name_by_id(self, i):
         return self.nodes[i-1]
@@ -43,8 +43,8 @@ class GrafMatrix:
 
     def is_node_exist(self,name):
         if name in self.nodes:
-            return True;
-        return False;
+            return True
+        return False
 
     def get_parents(self, i):
         col = self.column(i-1)
@@ -55,7 +55,7 @@ class GrafMatrix:
         return parent
 
     def get_childs(self, i):
-        row = self.edges[i-1];
+        row = self.edges[i-1]
         children=[]
         for j in range(len(self.edges)):
             if row[j] !=0:
@@ -103,7 +103,7 @@ class GrafMatrix:
         return sumEdges
 
     def count_not_zero(self, numList):
-        j=0;
+        j=0
         for i in numList:
             if i!=0:
                 j+=1

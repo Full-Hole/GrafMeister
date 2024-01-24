@@ -4,9 +4,7 @@ import menu as mm
 from grafarray import GrafArray
 from grafmatrix import GrafMatrix
 from grafedges import GrafEdges
-from prettytable import PrettyTable
 
-print("Hello")
 V = ['Pete', 'Stuart', 'George', 'John', 'Ringo', 'Paul', 'Tommy', 'Norman', 'Chas']
 E = [
 [0, 6, 0, 0, 0, 0, 0, 0, 0],
@@ -43,6 +41,12 @@ def show_graph(G, custom_node_positions=None):
     nx.draw_networkx_edge_labels(G,pos,edge_labels=weight_labels)
     plt.show()
 
+def is_int(i):
+    try:
+        int(i)
+        return True
+    except ValueError:
+        return False
 
 def main_menu():
     while True:
@@ -52,45 +56,46 @@ def main_menu():
             case '1': g = GrafMatrix(V,E)
             case '2': g = GrafEdges(V,E)
             case '3': g = GrafArray(V,E)
+            case '4': 
+                g = parse_graph(V,E)
+                show_graph(g)
+                continue
             case '0': raise SystemExit
             case _ : 
                 print('Некорректный ввод')
                 continue
         side_menu(g)
 
-
-
 def side_menu(g):
     while True:
         mm.show_side_menu()
         i = input("Ваш выбор: ")
         match i:
-            case '1': neighbours_menu(g);
-            case '2': chain_menu(g);
-            case '3': weight_menu(g);
-            case '4': print("В заданном графе ", g.calc_edges(), " ребер");
+            case '1': neighbours_menu(g)
+            case '2': chain_menu(g)
+            case '3': weight_menu(g)
+            case '4': print("В заданном графе ", g.calc_edges(), " ребер")
             case '5': g.show()
-            case '0': break;
-            case _ : continue;
-        
+            case '0': break
+            case _ : continue        
 
 def neighbours_menu(g):
     print("")
-    node = input("Введите Id или Имя вершины: ");
-    out = '';
+    node = input("Введите Id или Имя вершины: ")
+    out = ''
     if is_int(node):
         if g.is_id_exist(int(node)):
-            print("Соседи вершины ",node, ' - ', g.get_neighbours_by_id(int(node)));
+            print("Соседи вершины ",node, ' - ', g.get_neighbours_by_id(int(node)))
             return    
     else:
         if g.is_node_exist(node):
-            print("Соседи вершины ",node, ' - ',g.get_neighbours(node));
+            print("Соседи вершины ",node, ' - ',g.get_neighbours(node))
             return
-    print('Вершина не найдена');
+    print('Вершина не найдена')
 
 def chain_menu(g):
     print("")
-    ids = [];
+    ids = []
     ans =''
     t = input("Введите цепочку вершин через пробел: ")
     ids = t.split()
@@ -113,34 +118,12 @@ def weight_menu(g):
     else:
         print("Введены некоретные данные")
 
-
-def is_int(i):
-    try:
-        int(i)
-        return True
-    except ValueError:
-        return False
-
-
-
-
-    
-
-#gred = ge.get_graf_edges(V,E)
-#ge.print_edges(gred)
-#Получение цепочки из ввода
-#chain = input_chain()
+ 
 main_menu()
 
 
 
 
-#grafArray.show_graph_table()
-
-
-G = parse_graph(V,E)
-show_graph(G)
-#i = input()
 
 
 
