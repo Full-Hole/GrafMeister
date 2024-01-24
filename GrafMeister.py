@@ -188,10 +188,3 @@ def show_side_menu():
     print(t)
  
 main_menu()
-
-
-
-
-
-
-
