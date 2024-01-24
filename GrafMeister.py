@@ -1,6 +1,5 @@
 ﻿import networkx as nx
 import matplotlib.pyplot as plt
-import menu as mm
 import timeit
 from prettytable import PrettyTable
 from getsize import get_size
@@ -53,7 +52,7 @@ def is_int(i):
 
 def main_menu():
     while True:
-        mm.show_main_menu()
+        show_main_menu()
         i = input("Ваш выбор: ")
         match i:
             case '1': g = GrafMatrix(V,E)
@@ -77,7 +76,7 @@ def main_menu():
 
 def side_menu(g):
     while True:
-        mm.show_side_menu()
+        show_side_menu()
         i = input("Ваш выбор: ")
         match i:
             case '1': neighbours_menu(g)
@@ -165,6 +164,30 @@ def test_menu():
 def get_counted_time(sm,st):
     return timeit.timeit(stmt=sm,setup=st,globals=globals())
 
+def show_main_menu():
+    t = PrettyTable(['№', 'Выбор'])
+    t.title = "Представление графов в ЭВМ"
+    t.align['Выбор'] = "l"
+    t.add_row(['1','Матрица смежности'])
+    t.add_row(['2','Список ребер'])
+    t.add_row(['3','Массив записей'],divider=True)
+    t.add_row(['4','Показать граф'])
+    t.add_row(['5','Размер объектов'])
+    t.add_row(['6','Время выполнения'],divider=True)
+    t.add_row(['0','Выход'])
+    print(t)
+
+def show_side_menu():
+    t = PrettyTable(['№', 'Выбор'])
+    t.align['Выбор'] = "l"
+    t.title = "Представление графов в ЭВМ"
+    t.add_row(['1','Соседи заданной вершины'])
+    t.add_row(['2','Создает ли последовательность цепь'])
+    t.add_row(['3','Номера вершин, сумма весов ребер которых больше заданной величины'])
+    t.add_row(['4','Количество ребер в графе'])
+    t.add_row(['5','Отобразить'],divider=True)
+    t.add_row(['0','Назад'])
+    print(t)
 
 
  

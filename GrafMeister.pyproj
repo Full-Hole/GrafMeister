@@ -28,7 +28,6 @@
     <Compile Include="grafarray.py" />
     <Compile Include="grafedges.py" />
     <Compile Include="GrafMeister.py" />
-    <Compile Include="menu.py" />
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="Global|PythonCore|3.10" />
