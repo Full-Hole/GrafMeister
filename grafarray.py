@@ -82,7 +82,6 @@ class GrafArray:
         except ValueError:
             return False
 
-
     def find_nodes_by_weight(self,weight):
         nodes =[]
         for row in self.graf:
@@ -107,5 +106,3 @@ class GrafArray:
             if node[1] == name:
                 return True
         return False
-
-    

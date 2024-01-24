@@ -22,7 +22,6 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="deepsize.py" />
     <Compile Include="getsize.py" />
     <Compile Include="grafmatrix.py" />
     <Compile Include="grafarray.py" />

@@ -137,7 +137,6 @@ def size_menu():
     print(t)
 
     input("Введите символ для возвращения в предыдущее меню")
-    
 
 def test_menu():
     setVar = {'Матрица смежности':"g = GrafMatrix(V,E)", 
@@ -145,9 +144,8 @@ def test_menu():
               'Массив записей':"g = GrafArray(V,E)"}
     setFunc = {'получение соседей':"g.get_neighbours_by_id(5)",
               'проверка цепи':"g.has_chain([1,2,3,4,6,7,8,9])",
-             'поиск вершин по стоимости':"g.find_nodes_by_weight(10)",
-            'подсчет граней':"g.calc_edges()"}
-    
+              'поиск вершин по стоимости':"g.find_nodes_by_weight(10)",
+              'подсчет граней':"g.calc_edges()"}
 
     print("Подсчет времени выполнения подпрограм")
     for key, val in setVar.items():
@@ -188,8 +186,6 @@ def show_side_menu():
     t.add_row(['5','Отобразить'],divider=True)
     t.add_row(['0','Назад'])
     print(t)
-
-
  
 main_menu()
 
