@@ -1,6 +1,8 @@
 ﻿import networkx as nx
 import matplotlib.pyplot as plt
 import menu as mm
+import timeit
+from prettytable import PrettyTable
 from getsize import get_size
 from grafarray import GrafArray
 from grafmatrix import GrafMatrix
@@ -62,7 +64,10 @@ def main_menu():
                 show_graph(g)
                 continue
             case '5': 
-                debug_menu()
+                size_menu()
+                continue
+            case '6': 
+                test_menu()
                 continue
             case '0': raise SystemExit
             case _ : 
@@ -122,17 +127,43 @@ def weight_menu(g):
     else:
         print("Введены некоретные данные")
 
-def debug_menu():
+def size_menu():
     print("")
-    g1 = GrafMatrix(V,E)
-    g2 = GrafEdges(V,E)
-    g3 = GrafArray(V,E)
-
-    print("Размер объекта Матрица смежности: ", get_size(g1.graf))
-    print("Размер объекта Список ребер:", get_size(g2.graf))
-    print("Размер объекта Массив записей:", get_size(g3.graf))
+    t = PrettyTable(['Объект', 'Размер в байтах'])
+    t.title = 'Размер объектов'
+    t.align['Объект'] = "l"
+    t.add_row(['Матрица смежности', get_size(GrafMatrix(V,E).graf)])
+    t.add_row(['Список ребер', get_size(GrafEdges(V,E).graf)])
+    t.add_row(['Массив записей', get_size(GrafArray(V,E).graf)])
+    print(t)
 
     input("Введите символ для возвращения в предыдущее меню")
+    
+
+def test_menu():
+    setVar = {'Матрица смежности':"g = GrafMatrix(V,E)", 
+              'Список ребер':"g = GrafEdges(V,E)",
+              'Массив записей':"g = GrafArray(V,E)"}
+    setFunc = {'получение соседей':"g.get_neighbours_by_id(5)",
+              'проверка цепи':"g.has_chain([1,2,3,4,6,7,8,9])",
+             'поиск вершин по стоимости':"g.find_nodes_by_weight(10)",
+            'подсчет граней':"g.calc_edges()"}
+    
+
+    print("Подсчет времени выполнения подпрограм")
+    for key, val in setVar.items():
+        t = PrettyTable(['Название функции', 'Время выполнения 10^6 раз', 'средее время'])
+        t.title = key
+        t.align['Название функции'] = "l"
+        for k, v in setFunc.items():
+            time= get_counted_time(v,val)
+            t.add_row([k, time,time/1000000])
+        print(t)
+
+    input("Введите символ для возвращения в предыдущее меню")
+
+def get_counted_time(sm,st):
+    return timeit.timeit(stmt=sm,setup=st,globals=globals())
 
 
 
