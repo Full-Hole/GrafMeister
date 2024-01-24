@@ -26,7 +26,6 @@
     <Compile Include="grafarray.py" />
     <Compile Include="grafedges.py" />
     <Compile Include="GrafMeister.py" />
-    <Compile Include="main.py" />
     <Compile Include="menu.py" />
   </ItemGroup>
   <ItemGroup>
