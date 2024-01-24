@@ -106,3 +106,6 @@ class GrafEdges:
             if weights > weight:
                 nodesList.append(i+1)
         return nodesList
+
+    def calc_edges(self):
+        return len(self.edges)

@@ -47,9 +47,10 @@ class GrafMatrix:
         return False;
 
     def get_parents(self, i):
+        col = self.column(i-1)
         parent=[]
         for j in range(len(self.edges)):
-            if self.edges[j][i-1] !=0:
+            if col[j] !=0:
                 parent.append(j+1)
         return parent
 
@@ -96,5 +97,15 @@ class GrafMatrix:
         return nodesList
 
     def calc_edges(self):
-        return 'fuckoff'
+        sumEdges=0
+        for i in range(len(self.edges)):
+            sumEdges+=self.count_not_zero(self.edges[i])
+        return sumEdges
+
+    def count_not_zero(self, numList):
+        j=0;
+        for i in numList:
+            if i!=0:
+                j+=1
+        return j
 
